@@ -17,10 +17,27 @@ Telegram::Bot::Client.run(token) do |bot|
     when '/Anynewconnectionsinlinkedin?'
       bot.api.send_message(chat_id: message.chat.id, text: contents)
     when '/Getmenewsupdate'
-      bot.api.send_message(chat_id: message.chat.id, text: "Hey! #{message.from.first_name}! Here is your breaking news" "\n" "\n" "#{breakingnews}" "\n" "\n" "Would you like to have information on technews or entertainment?")
+      question = 'Which news' "\n" "\n" '1.General , 2. Tech, 3.Entertainment, 4. Weather'
+      answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: [%w(1 2), %w(3 4)], one_time_keyboard: true)
+      bot.api.send_message(chat_id: message.chat.id, text: question, reply_markup: answers)
+      markup = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: answers)
+      if answers.include? '1'
+        bot.api.send_message(chat_id: message.chat.id, text: "Hey! #{message.from.first_name}, Great")
+      else
+        bot.api.send_message(chat_id: message.chat.id, text: "Hey! #{message.from.first_name}, Too bad")
+      end
     end
   end
 end
+
+  
+
+
+
+
+       
+
+
 
       
 
