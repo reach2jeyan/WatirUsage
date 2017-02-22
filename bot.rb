@@ -6,7 +6,7 @@ EntNews = File.open("Entertainment.txt") {|file| file.read}
 frienddetails = File.open("linkedinfriends.txt") {|file| file.read}
 require 'openssl'
    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
-token = '376531485:AAEFzrgNQP0PNSSvwec5E1UGg9NVIwp4Bmk'
+token = ''
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
     case message.text
